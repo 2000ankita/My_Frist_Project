@@ -1,4 +1,4 @@
-variable "credentials" {
+variable "GOOGLE_CREDENTIALS" {
   description = "GCP service account JSON key"
   type        = string
   sensitive   = true
