@@ -1,8 +1,13 @@
 locals {
   apis_to_enable = [
-    "cloudresourcemanager.googleapis.com",
-    "compute.googleapis.com"
+    "compute.googleapis.com",
+    "storage.googleapis.com"
   ]
+}
+
+resource "google_project_service" "cloud_resource_manager" {
+  project = var.project_id
+  service = "cloudresourcemanager.googleapis.com"
 }
 
 resource "google_project_service" "api_services" {
@@ -10,4 +15,6 @@ resource "google_project_service" "api_services" {
 
   project = var.project_id
   service = each.value
+
+  depends_on = [google_project_service.cloud_resource_manager]  # Ensures Cloud Resource Manager API is enabled first
 }
