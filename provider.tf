@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("service-account-key.json") # Path to your service account key file
+  credentials = var.GOOGLE_CREDENTIALS
   project     = var.project_id
   region      = var.region
 }
